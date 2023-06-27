@@ -32,7 +32,7 @@ router.post("/login", async(req,res)=>{
             const hashPassword = CryptoJs.AES.decrypt(user.password, process.env.PASS_SEC)
             const pass = hashPassword.toString(CryptoJs.enc.Utf8)
             if(pass!==password){
-                res.send({message:"Invalid login details"})
+                res.status(500).send({message:"Invalid login details"})
             }
             else{
                 const accessToken= jwt.sign({
@@ -42,12 +42,12 @@ router.post("/login", async(req,res)=>{
                 ,process.env.JWT_SEC,
                 {expiresIn:"3d"}
                 )
-                res.send({message:"Sucessfully Logged In!",user, accessToken})
+                res.status(200).send({message:"Sucessfully Logged In!",user, accessToken})
 
             }
         }
         else{
-            res.send({message:"Invalid Credentials!"})
+            res.status(500).send({message:"Invalid Credentials!"})
         }
     })
 
