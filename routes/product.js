@@ -58,6 +58,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const qNew = req.query.new;
   const qCategory = req.query.category;
+  const qAnime = req.query.anime;
   try {
     let products;
     if (qNew) {
@@ -68,7 +69,12 @@ router.get("/", async (req, res) => {
           $in: [qCategory],
         },
       });
-    } else {
+    }else if (qAnime) {
+      products = await Product.find({
+        anime_id: qAnime
+      });
+    } 
+    else {
       products = await Product.find();
     }
     res.status(200).json(products);
@@ -76,5 +82,6 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 module.exports = router;

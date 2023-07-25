@@ -23,7 +23,7 @@ const ProductSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
-       anime:{
+       anime_id:{
             type: String,
             required: true
        }
