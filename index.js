@@ -30,6 +30,19 @@ app.listen(port,()=>{
     console.log(`App running on PORT ${port}`)
 })
 
+// server home page
+app.get("/",(req,res)=>{ 
+   const message = "Welcome to the anime store server"
+   const apis= [
+    {users: "api/users"},
+    {auth: "api/auth"},
+    {products: "api/products"},
+    {carts: "api/carts"},
+    {orders: "api/orders"},
+   ]
+    res.send([message,apis]);
+})
+
 // Routes
 app.use("/api/users", userRoute)
 app.use("/api", authRoute)
