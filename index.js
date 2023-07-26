@@ -17,7 +17,7 @@ const animeRoute = require("./routes/anime")
 
 
 
-
+mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL,(err)=>{
     if (err) console.log("DB connection failed")
     else console.log("DB connected")
