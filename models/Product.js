@@ -16,17 +16,29 @@ const ProductSchema = new mongoose.Schema(
             required: true
         },
         categories:{
-            type: Array,
+            type: Array,  // array of category names
             required: true
         },     
        price:{
             type: Number,
             required: true
         },
-       anime_id:{
+       anime:{
             type: String,
             required: true
-       }
+       },
+       size:{
+            type: String,
+            required: false
+       },
+       color:{
+            type: String,
+            required: false
+       },
+       material:{
+            type: String,
+            required: false
+       } 
     
     },
     {timestamps: true}

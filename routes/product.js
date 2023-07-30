@@ -1,10 +1,13 @@
 const router = require("express").Router();
 const Product = require("../models/Product");
+const Anime = require("../models/Anime");
+const Category = require("../models/Category");
 const {
   verifyToken,
   verifyTokenAndAuthorize,
   verifyTokenAndAdmin,
 } = require("./verifyToken");
+const { query } = require("express");
 
 // Create Product
 
@@ -71,12 +74,13 @@ router.get("/", async (req, res) => {
       });
     }else if (qAnime) {
       products = await Product.find({
-        anime_id: qAnime
+        anime: qAnime
       });
     } 
     else {
       products = await Product.find();
     }
+
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);
